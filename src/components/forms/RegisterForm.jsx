@@ -2,7 +2,7 @@
 import PopUp from "@/components/PopUp"
 import Button from "@/components/inputs/buttons/Button"
 import TextFiled from "@/components/inputs/fields/TextField"
-import RegisterSchema from "@/utils/schema/registerSchema"
+import registerSchema from "@/utils/schema/registerSchema"
 import axios from "axios"
 import clsx from "clsx"
 import { Dosis } from "next/font/google"
@@ -37,7 +37,7 @@ const RegisterForm = () => {
     }
 
     try {
-      await RegisterSchema.validate(user)
+      await registerSchema.validate(user)
       const register = await axios.post("/api/auth/register",
         user)
       setPopup(true)
