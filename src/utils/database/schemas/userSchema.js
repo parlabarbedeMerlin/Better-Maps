@@ -20,10 +20,6 @@ const userSchema = new Schema({
   admin: {
     type: Boolean,
     default: false
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
   }
 })
 export default userSchema
