@@ -1,5 +1,6 @@
+import UserModel from "@/utils/database/models/userModel"
+
 const verfiyMail = async (token, res) => {
-  const UserModel = require("@/utils/database/models/userModel").default
   const user = await UserModel.findOne({ verifyToken: token })
 
   if (!user) {
