@@ -4,9 +4,7 @@ import { protectedUrls } from "@/utils/config"
 
 // eslint-disable-next-line consistent-return
 export const middleware = async (request) => {
-  const protectedurl = checkUrls(request.nextUrl.pathname, protectedUrls)
-
-  if (protectedurl) {
+  if (checkUrls(request.url.pathname, protectedUrls)) {
     try {
       const token = request.cookies.get("token")?.value
       const user = await verifyTokenValidity(token)
