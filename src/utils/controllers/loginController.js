@@ -10,9 +10,7 @@ const loginController = async (req, res) => {
     const isPasswordCorrect = await verifyPassword(password, user.password)
 
     if (isPasswordCorrect && user.verified) {
-      const token = generateAuthToken(user)
-      res.setHeader("Set-Cookie", `token=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`)
-      res.status(200).json({ message: "User logged in successfully", token })
+      generateAuthToken(user, res)
 
       return
     }
