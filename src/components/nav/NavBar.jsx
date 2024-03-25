@@ -1,7 +1,7 @@
 import Logo from "@/components/Logo"
 import Button from "@/components/inputs/buttons/Button"
 import { useConnectionContext } from "@/context/connection"
-import { Bars3Icon } from "@heroicons/react/24/solid"
+import { Bars3Icon, PlusIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import { Dosis } from "next/font/google"
 import Link from "next/link"
@@ -28,6 +28,10 @@ const NavBar = () => {
           </>
         ) : (
           <>
+            <Button className={dosis.className} href="/add">
+              <PlusIcon className="size-6 font-extrabold" />
+              Add
+            </Button>
             <Button className={dosis.className} variant="secondary" href="/auth/logout">Logout</Button>
           </>
         )

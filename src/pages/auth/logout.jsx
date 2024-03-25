@@ -6,12 +6,12 @@ import { useEffect } from "react"
 const Logout = () => {
   const router = useRouter()
   const { setConnected } = useConnectionContext()
-  useEffect(() => () => {
+
+  useEffect(() => {
     Cookies.remove("token")
     setConnected(false)
     router.push("/")
-  }
-  )
+  }, [])
 
   return (
     <div>
