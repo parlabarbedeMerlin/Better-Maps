@@ -2,6 +2,7 @@
 import PopUp from "@/components/PopUp"
 import Button from "@/components/inputs/buttons/Button"
 import TextFiled from "@/components/inputs/fields/TextField"
+import { useConnectionContext } from "@/context/connection"
 import loginSchema from "@/utils/schema/loginSchema"
 import axios from "axios"
 import clsx from "clsx"
@@ -17,6 +18,7 @@ const RegisterForm = () => {
   const [popup, setPopup] = useState(false)
   const [message, setMessage] = useState("")
   const router = useRouter()
+  const { setConnected } = useConnectionContext()
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
@@ -28,6 +30,7 @@ const RegisterForm = () => {
     try {
       await loginSchema.validate(connection)
       await axios.post("/api/auth/login", connection)
+      setConnected(true)
 
       router.push("/")
     }
