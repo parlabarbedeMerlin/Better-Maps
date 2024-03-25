@@ -1,3 +1,4 @@
 export const protectedUrls = {
-  profile: /^\/profile.*$/gu
+  profile: /^\/profile.*$/gu,
+  add: /^\/add.*$/gu,
 }

@@ -10,8 +10,6 @@ const Logout = () => {
   }
   )
 
-  router.push("/")
-
   return (
     <div>
       <h1>Logout</h1>
