@@ -1,22 +1,16 @@
 import Logo from "@/components/Logo"
 import Button from "@/components/inputs/buttons/Button"
+import { useConnectionContext } from "@/context/connection"
 import { Bars3Icon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
-import Cookies from "js-cookie"
 import { Dosis } from "next/font/google"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
 
 // eslint-disable-next-line new-cap
 const dosis = Dosis({ subsets: ["latin"] })
 const NavBar = () => {
-  const [connected, setConnected] = useState(Boolean(Cookies.get("token")))
-
-  useEffect(() => {
-    setConnected(Boolean(Cookies.get("token")))
-  }
-    , [connected])
+  const { connected } = useConnectionContext()
 
   return (
     <nav className="bg-white p-5 flex gap-8 justify-between items-center" >
@@ -35,9 +29,6 @@ const NavBar = () => {
         ) : (
           <>
             <Button className={dosis.className} variant="secondary" href="/auth/logout">Logout</Button>
-            <p>
-              {connected}
-            </p>
           </>
         )
         }
