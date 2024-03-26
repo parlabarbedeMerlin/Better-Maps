@@ -6,9 +6,9 @@ const ConnectionContext = createContext({})
 export const ConnectionContextProvider = ({ children }) => {
   const [connected, setConnected] = useState()
 
-  useEffect(() => async () => {
-    const connect = await Cookies.get("token")
-    await setConnected(connect)
+  useEffect(() => () => {
+    const connect = Cookies.get("token")
+    setConnected(connect)
     console.log("ConnectionContextProvider", connect)
   })
 

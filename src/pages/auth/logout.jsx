@@ -1,17 +1,25 @@
-import { useConnectionContext } from "@/context/connection"
 import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 
 const Logout = () => {
   const router = useRouter()
-  const { setConnected } = useConnectionContext()
 
   useEffect(() => {
-    Cookies.remove("token")
-    setConnected(false)
-    router.push("/")
-  }, [])
+    const logout = () => {
+      try {
+        Cookies.remove("token")
+        router.push("/")
+      }
+      catch (error) {
+        console.error(error)
+      }
+    }
+
+    logout()
+
+    return logout
+  }, [router])
 
   return (
     <div>
