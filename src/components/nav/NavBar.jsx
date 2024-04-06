@@ -15,8 +15,8 @@ const NavBar = () => {
   return (
     <nav className="bg-white p-5 flex gap-8 justify-between items-center" >
       <Link href="/" className="flex group justify-start items-center w-1/3 ">
-        <Logo className="h-14 w-auto" />
-        <span className={clsx("font-bold text-5xl text-gray-800 pl-5 transition-all duration-700 group-hover:font-light", dosis.className)}>
+        <Logo className="h-14 min-h-14 min-w-16 w-auto hidden md:block" />
+        <span className={clsx("select-none font-bold ms:text-5xl sm:text-4xl text-3xl text-gray-800 md:pl-5 sm:pl-2 pl-0 transition-all duration-700 group-hover:font-light", dosis.className)}>
           BetterMaps
         </span>
       </Link>

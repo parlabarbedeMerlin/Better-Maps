@@ -9,7 +9,6 @@ export const ConnectionContextProvider = ({ children }) => {
   useEffect(() => () => {
     const connect = Cookies.get("token")
     setConnected(connect)
-    console.log("ConnectionContextProvider", connect)
   })
 
   return (

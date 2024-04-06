@@ -224,7 +224,7 @@
     "space-before-blocks": "error",
     "semi": ["error", "never"],
     // extra
-    "@next/next/no-html-link-for-pages": ["error", "./src/app"],
+    "@next/next/no-html-link-for-pages": ["error", "./src/pages"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": [

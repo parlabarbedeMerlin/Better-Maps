@@ -7,13 +7,8 @@ const Logout = () => {
 
   useEffect(() => {
     const logout = () => {
-      try {
-        Cookies.remove("token")
-        router.push("/")
-      }
-      catch (error) {
-        console.error(error)
-      }
+      Cookies.remove("token")
+      router.push("/")
     }
 
     logout()

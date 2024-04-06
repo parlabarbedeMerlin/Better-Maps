@@ -15,7 +15,7 @@ const generateAuthToken = async ({ email, firstName, lastName, admin }, res) => 
     .setExpirationTime("2h")
     .sign(secret)
 
-  res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=7200`)
+  res.setHeader("Set-Cookie", `token=${token}; Secure; SameSite=None; Path=/; Max-Age=7200`)
   res.status(200).json({ message: "Logged in successfully" })
 }
 
