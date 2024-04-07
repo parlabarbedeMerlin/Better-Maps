@@ -38,7 +38,7 @@ const LoginForm = () => {
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
       await loginSchema.validate(values, { abortEarly: false })
-      await axios.post("/api/auth/login", values)
+      await axios.post(`${process.env.HOST}/api/auth/login`, values)
       setConnected(true)
       setPopup(true)
       setSuccess(true)
@@ -51,7 +51,6 @@ const LoginForm = () => {
       } else {
         setPopup(true)
         setSuccess(false)
-        console.error()
         setMessage(`\n${error.response.data.message}`)
       }
     }

@@ -40,7 +40,7 @@ const RegisterForm = () => {
   }
   const handleSubmit = async (values, { setFieldError }) => {
     try {
-      const register = await axios.post("/api/auth/register", values)
+      const register = await axios.post(`${process.env.HOST}/api/auth/register`, values)
       setPopup(true)
       setSuccess(true)
       setMessage(register.data.message)

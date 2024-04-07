@@ -1,4 +1,3 @@
-import RestaurantForm from "@/components/forms/RestaurantForm"
 import Button from "@/components/inputs/buttons/Button"
 import SelectField from "@/components/inputs/fields/SelectField"
 import TextFiled from "@/components/inputs/fields/TextField"
@@ -53,11 +52,9 @@ const Add = () => {
               <TextFiled id="city" placeholder="City" className="w-1/2" />
               <TextFiled id="country" placeholder="Country" className="w-1/2" />
             </div>
-            {
-              (formType === "restaurant") && (
-                <RestaurantForm onClick={(e) => console.log(e)} />
-              )
-            }
+            <p>
+              {formType}
+            </p>
             <Button type="submit" variant="primary" >
               Add
             </Button>

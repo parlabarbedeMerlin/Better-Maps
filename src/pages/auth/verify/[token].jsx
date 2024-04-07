@@ -1,4 +1,3 @@
-"use client"
 import PopUp from "@/components/PopUp"
 import Button from "@/components/inputs/buttons/Button"
 import axios from "axios"
@@ -12,7 +11,7 @@ const Verify = () => {
   const { token } = router.query
   const handleVerify = async () => {
     try {
-      await axios.post("/api/auth/verifyMail", { token })
+      await axios.post(`${process.env.HOST}/api/auth/verifyMail`, { token })
       router.push("/auth/login")
     }
     catch (error) {
