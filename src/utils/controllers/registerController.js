@@ -24,7 +24,7 @@ const registerController = async (req, res) => {
     await createRoute(async () => {
       try {
         await register(newUser)(req, res)
-        res.status(201).json({ message: "User created successfully" })
+        await res.status(201).json({ message: "User created successfully" })
       } catch (error) {
         res.status(500).json({ message: "An error occurred while creating the user", error: error.message })
       }

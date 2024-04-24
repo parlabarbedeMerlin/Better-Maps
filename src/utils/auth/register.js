@@ -17,7 +17,7 @@ const register = (user) => async (req, res) => {
       templateId: "d-e930e62279954f2d90573f92e3ed7146",
       data: emailData
     }
-    sendEmail(email)
+    await sendEmail(email)
 
     return res.status(201).json({ message: "User created successfully", user: newUser })
   }
