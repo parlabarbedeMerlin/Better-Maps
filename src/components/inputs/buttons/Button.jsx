@@ -8,7 +8,7 @@ const styles = {
 }
 const Button = ({ type, className, children, variant = "primary", ...props }) => (
   type === "button" || type === "submit") ? (
-  <button className={clsx("select-none rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)} type={(type === "submit") ? "submit" : "button"} {...props}>
+  <button className={clsx("select-none rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)} type={type} {...props}>
     {children}
   </button>
 ) : (

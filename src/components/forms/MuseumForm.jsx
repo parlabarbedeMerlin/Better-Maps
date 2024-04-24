@@ -1,9 +1,9 @@
 import SelectField from "@/components/inputs/fields/SelectField"
 import { useState } from "react"
 
-const ParkForm = ({ parkTypes, privacys, stars, prices, errors, touched, handleChange, handleBlur, ...props }) => {
-  const [privacy, setprivacy] = useState(parkTypes[0])
-  const [parkType, setparkType] = useState(privacys[0])
+const MuseumForm = ({ typesOfArt, artisticCurrents, stars, prices, errors, touched, handleChange, handleBlur, ...props }) => {
+  const [artisticCurrent, setArtisticCurrent] = useState(artisticCurrents[0])
+  const [typeOfArt, setTypeOfArt] = useState(typesOfArt[0])
   const [starRating, setStarRating] = useState(stars[0])
   const [price, setPrice] = useState(prices[0])
 
@@ -12,12 +12,12 @@ const ParkForm = ({ parkTypes, privacys, stars, prices, errors, touched, handleC
     <>
       <div className="w-full flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-1/4">
-          <SelectField name="privacy" label="Privacy" items={privacys} current={privacy} setCurrent={setprivacy} error={errors.privacy} touched={touched.privacy} onChange={handleChange} onBlur={handleBlur} {...props} />
-          <span className="text-red-500">{errors.privacy && touched.privacy && (<>{errors.privacy}</>)}</span>
+          <SelectField name="artisticCurrent" label="Artistic current" items={artisticCurrents} current={artisticCurrent} setCurrent={setArtisticCurrent} error={errors.artisticCurrent} touched={touched.artisticCurrent} onChange={handleChange} onBlur={handleBlur} {...props} />
+          <span className="text-red-500">{errors.artisticCurrent && touched.artisticCurrent && (<>{errors.artisticCurrent}</>)}</span>
         </div>
         <div className="w-full md:w-1/4">
-          <SelectField name="parkType" label="Type of park" items={parkTypes} current={parkType} setCurrent={setparkType} error={errors.parkType} touched={touched.parkType} onChange={handleChange} onBlur={handleBlur} {...props} />
-          <span className="text-red-500">{errors.parkType && touched.parkType && (<>{errors.parkType}</>)}</span>
+          <SelectField name="typeOfArt" label="Type of art" items={typesOfArt} current={typeOfArt} setCurrent={setTypeOfArt} error={errors.typeOfArt} touched={touched.typeOfArt} onChange={handleChange} onBlur={handleBlur} {...props} />
+          <span className="text-red-500">{errors.typeOfArt && touched.typeOfArt && (<>{errors.typeOfArt}</>)}</span>
         </div>
         <div className="w-full md:w-1/4">
           <SelectField name="starRating" label="Rating" items={stars} current={starRating} setCurrent={setStarRating} error={errors.starRating} touched={touched.starRating} onChange={handleChange} onBlur={handleBlur} {...props} />
@@ -31,4 +31,4 @@ const ParkForm = ({ parkTypes, privacys, stars, prices, errors, touched, handleC
     </>
   )
 }
-export default ParkForm
+export default MuseumForm
