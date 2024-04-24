@@ -7,12 +7,12 @@ const styles = {
   caution: "bg-red-400 hover:bg-white text-white text-white hover:text-red-400 caution-btn"
 }
 const Button = ({ type, className, children, variant = "primary", ...props }) => (
-  type === "button") ? (
-  <button className={clsx("rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)}  {...props}>
+  type === "button" || type === "submit") ? (
+  <button className={clsx("select-none rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)} type={type} {...props}>
     {children}
   </button>
 ) : (
-  <Link className={clsx("rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)} {...props}>
+  <Link className={clsx("select-none rounded-lg p-3 px-4 font-bold text-xl flex justify-between items-center transition-all duration-300", styles[variant], className)} {...props}>
     {children}
   </Link>
 )
