@@ -4,13 +4,17 @@ import { useEffect } from "react"
 
 const Logout = () => {
   const router = useRouter()
-  useEffect(() => () => {
-    Cookies.remove("token")
-    router.push("/")
-  }
-  )
 
-  router.push("/")
+  useEffect(() => {
+    const logout = () => {
+      Cookies.remove("token")
+      router.push("/")
+    }
+
+    logout()
+
+    return logout
+  }, [router])
 
   return (
     <div>
