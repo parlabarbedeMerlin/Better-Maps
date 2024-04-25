@@ -1,6 +1,5 @@
 import verifyTokenValidity from "@/utils/auth/verifyTokenValidity"
 import { Types } from "@/utils/config"
-import createRoute from "@/utils/database/createRoute"
 import PlaceModel from "@/utils/database/models/placeModel"
 import placeSchema from "@/utils/schema/placeSchema"
 
@@ -51,23 +50,11 @@ const addPlaceController = async (req, res) => {
   }
 
   try {
-    createRoute(async () => {
-      try {
-        await createRoute(async () => {
-          try {
-            await placeSchema.validate(place)
-            await PlaceModel.create(place)
-            res.status(201).json({ message: "Place added successfully", place })
-          } catch (error) {
-            res.status(400).json({ message: "Invalid place data", error: error.message })
-          }
-        })(req, res)
-      } catch (error) {
-        res.status(500).json({ message: "An error occurred while reaching the database", error: error.message })
-      }
-    })
+    await placeSchema.validate(place)
+    await PlaceModel.create(place)
+    res.status(201).json({ message: "Place added successfully", place })
   } catch (error) {
-    res.status(500).json({ message: "An error occurred while reaching the database", error: error.message })
+    res.status(400).json({ message: "Invalid place data", error: error.message })
   }
 }
 export default addPlaceController
