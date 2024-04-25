@@ -1,6 +1,6 @@
+import UserModel from "@/utils/database/models/userModel"
 import sendEmail from "@/utils/mail/sendEmail"
 const register = (user) => async (req, res) => {
-  const UserModel = require("@/utils/database/models/userModel").default
   const newUser = new UserModel(user)
 
   try {

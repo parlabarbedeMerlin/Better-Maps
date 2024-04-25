@@ -9,6 +9,7 @@ export const Types = [
   "🏛 Museum",
   "🌳 Park",
   "🍺 Bar",
+  "❓ Other"
 ]
 export const FoodTypes = [
   "🍔 Fast Food",
@@ -21,7 +22,6 @@ export const FoodTypes = [
   "❓ Other"
 ]
 export const Stars = [
-  "❌",
   "⭐️",
   "⭐️⭐️",
   "⭐️⭐️⭐️",
