@@ -1,11 +1,18 @@
 import verfiyMail from "@/utils/auth/verifyMail"
-const mailVerificationController = async (req, res) => {
+import createRoute from "@/utils/database/createRoute"
+const mailVerificationController = (req, res) => {
   const { token } = req.body
 
   try {
-    await verfiyMail(token, res)
-  }
-  catch (error) {
+    createRoute(async () => {
+      try {
+        await verfiyMail(token, res)
+      }
+      catch (error) {
+        res.status(500).json({ message: error.message })
+      }
+    })
+  } catch (error) {
     res.status(500).json({ message: error.message })
   }
 }
