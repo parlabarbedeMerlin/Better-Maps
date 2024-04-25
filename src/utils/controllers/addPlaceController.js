@@ -51,15 +51,21 @@ const addPlaceController = async (req, res) => {
   }
 
   try {
-    await createRoute(async () => {
+    createRoute(async () => {
       try {
-        await placeSchema.validate(place)
-        await PlaceModel.create(place)
-        res.status(201).json({ message: "Place added successfully", place })
+        await createRoute(async () => {
+          try {
+            await placeSchema.validate(place)
+            await PlaceModel.create(place)
+            res.status(201).json({ message: "Place added successfully", place })
+          } catch (error) {
+            res.status(400).json({ message: "Invalid place data", error: error.message })
+          }
+        })(req, res)
       } catch (error) {
-        res.status(400).json({ message: "Invalid place data", error: error.message })
+        res.status(500).json({ message: "An error occurred while reaching the database", error: error.message })
       }
-    })(req, res)
+    })
   } catch (error) {
     res.status(500).json({ message: "An error occurred while reaching the database", error: error.message })
   }
