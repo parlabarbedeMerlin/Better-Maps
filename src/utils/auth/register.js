@@ -6,9 +6,9 @@ const register = (user) => async (req, res) => {
   try {
     const emailData = {
       // eslint-disable-next-line camelcase
-      verification_link: `${process.env.HOST_NAME}/auth/verify/${newUser.verifyToken}`,
+      verification_link: `${process.env.HOST_NAME}auth/verify/${newUser.verifyToken}`,
       // eslint-disable-next-line camelcase
-      deletation_link: `${process.env.HOST_NAME}/auth/verify-cancel/${newUser.verifyToken}`,
+      deletation_link: `${process.env.HOST_NAME}auth/verify-cancel/${newUser.verifyToken}`,
     }
     await newUser.save()
     const email = {
