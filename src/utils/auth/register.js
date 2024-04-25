@@ -1,6 +1,6 @@
-import UserModel from "@/utils/database/models/userModel"
 import sendEmail from "@/utils/mail/sendEmail"
 const register = (user) => async (req, res) => {
+  const UserModel = require("@/utils/database/models/userModel").default
   const newUser = new UserModel(user)
 
   try {
@@ -17,7 +17,7 @@ const register = (user) => async (req, res) => {
       templateId: "d-e930e62279954f2d90573f92e3ed7146",
       data: emailData
     }
-    await sendEmail(email)
+    sendEmail(email)
 
     return res.status(201).json({ message: "User created successfully", user: newUser })
   }
