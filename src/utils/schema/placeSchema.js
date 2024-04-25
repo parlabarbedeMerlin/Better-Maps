@@ -1,78 +1,44 @@
+import { ArtisticCurrents, BarTypes, FoodTypes, ParkTypes, Prices, Privacys, Stars, Types, TypesOfArt } from "@/utils/config"
 import * as yup from "yup"
 
 const placeSchema = yup.object().shape({
-  placeType: yup.string().required(),
-  placeName: yup.string().required(),
-  author: yup.string().required(),
-  visibility: yup.boolean().required(),
-  address: yup.string().required(),
-  city: yup.string().required(),
-  postalCode: yup.string().required(),
-  country: yup.string().required(),
-  cuisineType: yup.string().when("placeType", {
-    is: "Restaurant",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
+  placeName: yup.string().required("Name is required"),
+  type: yup.string().required("Type is required"),
+  address: yup.string().required("Address is required"),
+  zipCode: yup.string().required("Zip code is required"),
+  city: yup.string().required("City is required"),
+  country: yup.string().required("Country is required"),
+  foodType: yup.string().when("type", {
+    is: "restaurant",
+    then: (schema) => schema.required("Food type is required").oneOf(FoodTypes, "Invalid food type"),
   }),
-  starRating: yup.number().when("placeType", {
-    is: "Restaurant",
-    then: yup.number().min(1).max(3).required(),
-    otherwise: yup.number().notRequired()
+  artisticCurrent: yup.string().when("type", {
+    is: "museum",
+    then: (schema) => schema.required("Artistic current is required").oneOf(ArtisticCurrents, "Invalid artistic current"),
   }),
-  averagePrice: yup.number().when("placeType", {
-    is: "Restaurant",
-    then: yup.number().required(),
-    otherwise: yup.number().notRequired()
+  typeOfArt: yup.string().when("type", {
+    is: "museum",
+    then: (schema) => schema.required("Type of art is required").oneOf(TypesOfArt, "Invalid type of art"),
   }),
-  artisticMovement: yup.string().when("placeType", {
-    is: "Museum",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
+  privacy: yup.string().when("type", {
+    is: "park",
+    then: (schema) => schema.required("Privacy is required").oneOf(Privacys, "Invalid privacy"),
   }),
-  artType: yup.string().when("placeType", {
-    is: "Museum",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
+  parkType: yup.string().when("type", {
+    is: "park",
+    then: (schema) => schema.required("Park type is required").oneOf(ParkTypes, "Invalid park type"),
   }),
-  museumFee: yup.boolean().when("placeType", {
-    is: "Museum",
-    then: yup.boolean().required(),
-    otherwise: yup.boolean().notRequired()
+  barType: yup.string().when("type", {
+    is: "bar",
+    then: (schema) => schema.required("Bar type is required").oneOf(BarTypes, "Invalid bar type"),
   }),
-  museumPrice: yup.number().when(["placeType", "museumFee"], {
-    is: (placeType, museumFee) => placeType === "Museum" && museumFee === true,
-    then: yup.number().required(),
-    otherwise: yup.number().notRequired()
+  starRating: yup.string().when("type", {
+    is: (value) => Types.includes(value),
+    then: (schema) => schema.required("Star rating is required").oneOf(Stars, "Invalid star rating"),
   }),
-  barType: yup.string().when("placeType", {
-    is: "Bar",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
-  }),
-  barAveragePrice: yup.number().when("placeType", {
-    is: "Bar",
-    then: yup.number().required(),
-    otherwise: yup.number().notRequired()
-  }),
-  parkType: yup.string().when("placeType", {
-    is: "Park",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
-  }),
-  parkAccessibility: yup.string().when("placeType", {
-    is: "Park",
-    then: yup.string().required(),
-    otherwise: yup.string().notRequired()
-  }),
-  parkFee: yup.boolean().when("placeType", {
-    is: "Park",
-    then: yup.boolean().required(),
-    otherwise: yup.boolean().notRequired()
-  }),
-  parkPrice: yup.number().when(["placeType", "parkFee"], {
-    is: (placeType, parkFee) => placeType === "Park" && parkFee === true,
-    then: yup.number().required(),
-    otherwise: yup.number().notRequired()
+  price: yup.string().when("type", {
+    is: (value) => Types.includes(value),
+    then: (schema) => schema.required("Price is required").oneOf(Prices, "Invalid price")
   })
 })
 
