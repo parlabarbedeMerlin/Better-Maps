@@ -1,46 +1,78 @@
-export default function Home() {
+import Button from "@/components/inputs/buttons/Button"
+import axios from "axios"
+import clsx from "clsx"
+import { Dosis } from "next/font/google"
+
+export const getServerSideProps = async () => {
+  const { data: places } = await axios.get("https://better-maps.lcl.host:44392/api/places?limit=6")
+  // console.log(places.places)
+
+  return {
+    props: places
+  }
+}
+// eslint-disable-next-line new-cap
+const dosis = Dosis({ subsets: ["latin"] })
+const Home = (props) => {
+  const { places } = props.pageProps
+
+
   return (
-    <main className={`flex-1 bg-green-600 flex justify-center items-center `}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores voluptatem ipsa totam ipsum excepturi corrupti, blanditiis animi voluptatum, quia nulla nesciunt sunt suscipit veniam nisi tempore magnam! Fugiat, consectetur recusandae.
-      Voluptates quos ab distinctio hic odit! Earum voluptate sit aspernatur ratione consequuntur praesentium, mollitia voluptatem totam? Fugiat culpa quam aliquam nobis nisi dolorum, possimus cupiditate eaque porro eum illo laboriosam?
-      Maiores, dolorem nihil deleniti nam molestiae harum voluptate explicabo, facilis, tenetur consectetur libero accusantium? Harum tempore non neque repellat, nesciunt ipsam repudiandae hic vero quisquam vel amet maiores, in nam?
-      Eos assumenda nihil iure, itaque maiores explicabo iste aut ducimus pariatur possimus optio sapiente est quasi dolor sunt tenetur. Deleniti, id numquam eaque et rerum a sit explicabo aut magni?
-      Minus consectetur blanditiis ipsam, autem sequi minima porro eos, exercitationem earum facere harum rem natus vel cupiditate, ipsa quod recusandae illum? Rem repellat vel dolore officiis provident alias? Eos, laudantium?
-      Assumenda beatae unde rem ipsum quas ut quasi, eius sapiente veritatis cupiditate deleniti harum tenetur rerum aperiam amet sed ab odit error quibusdam hic nulla, blanditiis ipsam? Veritatis, alias debitis?
-      Dolore, cumque vero obcaecati delectus autem aliquam officiis eius adipisci possimus libero illum dolorum at error maxime impedit aut veniam, magnam neque aperiam nobis culpa dolor sapiente. Optio, delectus qui.
-      At quas corporis, voluptate optio quibusdam delectus voluptas non impedit maxime numquam dolores quos quod, iure accusamus quisquam, vero vel sint suscipit modi nihil veniam? Corrupti maxime labore illo culpa?
-      Sit ut velit ad dicta, cum incidunt asperiores reprehenderit? Minus sunt accusamus quae! Est, nostrum ad natus eum, ab repellat nisi quae minus optio dolores rem reiciendis saepe magni iure.
-      Illum quae, tempora vitae quibusdam recusandae id, provident nemo ut quis odit quo a nesciunt, vel delectus voluptate sint molestias non mollitia veniam at obcaecati officiis eveniet. Quae, expedita alias!
-      Odio maiores corrupti exercitationem ullam nobis. Cumque quo consequuntur quas eligendi fuga, amet error sapiente aperiam esse eum accusamus debitis dignissimos nesciunt repellendus aut dolore est sunt impedit rerum velit.
-      Explicabo asperiores recusandae, perspiciatis eos enim, molestiae mollitia ipsam quod ut consequuntur accusantium sapiente magni at praesentium quidem impedit assumenda autem reprehenderit vitae ad placeat sint, rem alias inventore. Nobis!
-      Corporis incidunt modi doloribus sint suscipit expedita perspiciatis corrupti, reiciendis dolore quasi vel ipsum rem dolorum ab fuga nobis cumque. Quia harum placeat repudiandae dolorum culpa cum error recusandae velit.
-      Amet expedita ratione nihil eveniet similique aut sed delectus facere sapiente harum provident, tenetur minima mollitia et cupiditate quos obcaecati recusandae quas maiores dicta quis vero! Iure libero alias nobis.
-      Corporis aut cum, ex ipsam nobis error reiciendis sint suscipit similique debitis, porro impedit mollitia! Quidem dolore libero labore quisquam, illo provident, minus perspiciatis cupiditate quas neque, recusandae nemo laudantium?
-      Similique accusamus corrupti, dolor molestias facilis perferendis cupiditate error optio maxime dignissimos eum quas? Quam est a maiores facilis assumenda culpa debitis qui ea. Vel dolore dolores fugiat eaque aliquid.
-      Ex recusandae ipsam totam delectus placeat modi quaerat mollitia inventore. Illo, laboriosam laudantium quaerat deleniti architecto nihil eaque totam debitis ea. Tempore totam esse repudiandae eaque sequi fuga ducimus ipsa!
-      Aspernatur sequi consequatur ducimus deleniti quae iste ipsa, dignissimos animi quidem, veniam necessitatibus adipisci dolorem laborum tenetur impedit rem reprehenderit exercitationem recusandae ex. Praesentium at veniam laborum quisquam est id!
-      Excepturi labore quasi quidem, totam culpa iusto cum explicabo illo unde alias ratione quibusdam distinctio adipisci quam ipsam facere repudiandae ad. Placeat, mollitia. Qui, sapiente corporis dignissimos soluta molestiae eveniet.
-      Inventore nulla, placeat totam odit ea beatae est porro illo, nemo, obcaecati blanditiis? Accusantium quis consequuntur deserunt expedita veniam dolorem, eligendi incidunt. Esse minima dolore dignissimos, voluptatum sed illo quaerat!
-      Impedit soluta nam quis minima doloribus, recusandae rem maiores. Impedit at quo, corporis fugit enim ducimus dolorum similique, illum numquam sint id recusandae repellendus maxime dolor voluptas sequi perspiciatis sit?
-      Possimus nulla id, aliquam nostrum maxime, cumque praesentium provident eveniet eaque earum veritatis saepe repellendus minima quisquam sapiente impedit non neque? Distinctio, minima! Id aut explicabo ad. Illo, saepe nulla?
-      Pariatur earum provident nulla, perferendis sit nesciunt quia asperiores officiis molestias deserunt! Suscipit quae aperiam quia accusantium officia hic voluptate? Deserunt sit esse eos minus ut blanditiis nam fugit sed!
-      Blanditiis illo impedit, nam unde beatae dignissimos dolore laboriosam tempore libero maiores inventore doloremque alias et est ad ab vero, magni enim laborum minus? Reiciendis nisi dolores sint fuga suscipit!
-      Ipsa cumque iure sapiente accusantium blanditiis, neque, voluptatibus numquam quod iste delectus officiis laudantium. Maiores esse doloremque magni nemo consequuntur odio distinctio? Doloribus placeat iste labore distinctio beatae veniam nostrum.
-      Assumenda eius magni nulla, accusantium nisi minus, laudantium maiores earum, debitis fugiat asperiores repellendus! Id veniam illum temporibus non nulla dicta officia natus animi placeat alias eveniet, accusantium quia voluptas.
-      Qui nihil laudantium possimus vel adipisci error similique nisi velit cumque ad, quaerat deserunt necessitatibus quos illum amet delectus suscipit, sed itaque nemo quas cum explicabo deleniti! Dignissimos, aperiam corporis.
-      Officiis, suscipit maiores consequuntur recusandae fugit unde accusamus illo nulla sed saepe quod eligendi ipsum accusantium reprehenderit adipisci, quae quaerat assumenda natus est perferendis fugiat? Iusto ratione accusamus quibusdam at?
-      Ea sint alias omnis amet officiis blanditiis culpa, ut asperiores vero aliquid repellendus explicabo, similique hic? Id deserunt dolorum autem eveniet. Harum nesciunt quisquam distinctio facere reiciendis assumenda accusamus deserunt?
-      Voluptatibus neque beatae itaque! Aspernatur quod officia nam consequatur quos corporis, natus quam maiores eos iure ex tempora dolores aliquid, praesentium ipsam tempore non eligendi debitis voluptate. Labore, ullam reprehenderit.
-      Minus, reprehenderit nesciunt. Dolores quos, consequatur sapiente, voluptatum consectetur vel ullam quis, nisi neque suscipit amet. Harum dicta repellat rerum earum molestias consequuntur ducimus, modi exercitationem fugit omnis distinctio quisquam!
-      Possimus quam earum quia obcaecati voluptatum nostrum a libero fugiat exercitationem inventore. Corporis dignissimos unde labore. Ipsa perspiciatis esse explicabo harum unde eveniet obcaecati hic quasi rerum, ipsum rem sequi?
-      Facilis dolores sunt harum reprehenderit magni minus minima, officiis earum sapiente tempora sequi quos quasi asperiores sed in enim tenetur magnam a nemo adipisci atque beatae! Modi recusandae ullam iure!
-      Aperiam autem eligendi distinctio in repellat, sint rem provident libero rerum neque nostrum quibusdam dignissimos. Tempora voluptatibus sapiente, corrupti voluptas nam illum a dicta iste unde quibusdam perferendis, natus culpa.
-      Fugiat porro quasi consectetur, quae enim maiores delectus quibusdam dignissimos, ratione dolor minus laboriosam unde nulla est neque repudiandae soluta recusandae voluptatem? Fugiat dolore numquam vel praesentium culpa beatae illo.
-      Inventore, nam! Quia reiciendis incidunt officia quas ipsum nobis, aut eaque, eos unde aliquam impedit id vitae facere. Distinctio, ex dolorum incidunt nemo placeat blanditiis quidem omnis nostrum hic deleniti?
-      Corrupti soluta, ducimus alias illum odit ratione ea unde nesciunt molestias autem laboriosam expedita, facilis, voluptatem sit! Quae error non reprehenderit debitis. Quasi, et? Tempore hic ex quas perferendis exercitationem?
-      Ad accusamus vitae minus error consequatur sed, consectetur molestias veniam quae, culpa molestiae adipisci totam qui mollitia quisquam nam obcaecati vero quidem repellat voluptate cumque aperiam recusandae! Expedita, sint rem.
-      Omnis explicabo iste nisi suscipit quidem recusandae laborum? Ratione sapiente nulla deleniti inventore quasi totam recusandae, distinctio expedita dolore reprehenderit eum velit. Vero non voluptate tenetur numquam aliquam modi repudiandae!
-      Quas mollitia quae recusandae explicabo deserunt sequi commodi eveniet corrupti vero ullam, id ab eos facere, perferendis neque dicta nihil. Deleniti nulla quidem praesentium suscipit temporibus veniam labore accusamus numquam?
+    <main className={clsx("flex-1 flex flex-col justify-center items-center", dosis.className)}>
+      <div className="bg-gradient-to-b from-emerald-500 to to-green-500 h-[70vh] w-full flex justify-center items-center">
+        <h1 className="group w-full text-8xl font-bold text-center text-white hover:font-normal transition-all duration-700">Discover new places<span className="italic font-normal text-4xl group-hover:font-extrabold transition-all duration-700"> to be !</span></h1>
+      </div>
+      <div className=" bg-gradient-to-b from-green-500 to-emerald-200 w-full pb-5 flex justify-center items-center">
+        <ul className="w-4/5 bg-white flex flex-col p-6 rounded-3xl gap-2 items-center">
+          {/* <li className="w-full p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2">
+            <span className="text-xl font-extrabold">
+              Place Name Sample
+            </span>
+            <span className="text-xl">
+              Sample Address, Sample City, Sample Zip Code, Sample Country
+            </span>
+            <div className="flex justify-between">
+              <span>Type: <span className="font-bold">🍔 Restaurant</span></span>
+              <span>Stars: <span className="font-bold">⭐️⭐️⭐️⭐️</span></span>
+              <span>Price: <span className="font-bold">💵💵💵</span></span>
+            </div>
+          </li> */}
+          {places.map((place) => (
+            // eslint-disable-next-line no-underscore-dangle
+            <li key={place._id} className="group w-full">
+              {/* eslint-disable-next-line no-underscore-dangle */}
+              <a href={`/place/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all">
+                <span className="text-xl font-extrabold">
+                  {place.placeName}
+                </span>
+                <span className="text-xl">
+                  {place.address}, {place.city}, {place.zipCode}, {place.country}
+                </span>
+                <div className="flex justify-between">
+                  <span>Type: <span className="font-bold">{place.type}</span></span>
+                  <span>Stars: <span className="font-bold">{place.stars}</span></span>
+                  <span>Price: <span className="font-bold">{place.price}</span></span>
+                </div>
+              </a>
+            </li>
+          ))
+          }
+          <li className="w-fit mt-5">
+            <Button
+              type="link"
+              href="/places"
+            >
+              See More
+            </Button>
+          </li>
+        </ul>
+      </div>
+      <div className="bg-gradient-to-b from-emerald-200 to-emerald-400 w-full py-12">
+        <h2 className="group w-full text-5xl font-bold text-center text-white hover:font-normal transition-all duration-700">Find the perfect place <span className="italic font-normal text-3xl group-hover:font-extrabold transition-all duration-700"> to be !</span></h2>
+      </div>
+
     </main>
   )
 }
+
+export default Home

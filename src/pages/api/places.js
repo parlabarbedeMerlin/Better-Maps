@@ -8,7 +8,8 @@ const handler = createRoute(async (req, res) => {
   }
 
   if (req.method === "GET") {
-    await PlaceModel.find({}).then((places) => {
+    const { skip, limit } = req.query
+    await PlaceModel.find({}).skip(skip || 0).limit(limit || 0).then((places) => {
       res.status(200).json({ places })
     })
   }
