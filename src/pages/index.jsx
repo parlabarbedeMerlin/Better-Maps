@@ -5,7 +5,6 @@ import { Dosis } from "next/font/google"
 
 export const getServerSideProps = async () => {
   const { data: places } = await axios.get("https://better-maps.lcl.host:44392/api/places?limit=6")
-  // console.log(places.places)
 
   return {
     props: places
@@ -24,19 +23,6 @@ const Home = (props) => {
       </div>
       <div className=" bg-gradient-to-b from-green-500 to-emerald-200 w-full pb-5 flex justify-center items-center">
         <ul className="w-4/5 bg-white flex flex-col p-6 rounded-3xl gap-2 items-center">
-          {/* <li className="w-full p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2">
-            <span className="text-xl font-extrabold">
-              Place Name Sample
-            </span>
-            <span className="text-xl">
-              Sample Address, Sample City, Sample Zip Code, Sample Country
-            </span>
-            <div className="flex justify-between">
-              <span>Type: <span className="font-bold">🍔 Restaurant</span></span>
-              <span>Stars: <span className="font-bold">⭐️⭐️⭐️⭐️</span></span>
-              <span>Price: <span className="font-bold">💵💵💵</span></span>
-            </div>
-          </li> */}
           {places.map((place) => (
             // eslint-disable-next-line no-underscore-dangle
             <li key={place._id} className="group w-full">
@@ -58,10 +44,7 @@ const Home = (props) => {
           ))
           }
           <li className="w-fit mt-5">
-            <Button
-              type="link"
-              href="/places"
-            >
+            <Button type="link" href="/places">
               See More
             </Button>
           </li>
