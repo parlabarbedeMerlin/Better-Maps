@@ -17,7 +17,6 @@ const fields = [
 ]
 // eslint-disable-next-line new-cap
 const dosis = Dosis({ subsets: ["latin"] })
-// eslint-disable-next-line max-lines-per-function
 const LoginForm = () => {
   const router = useRouter()
   const { setConnected } = useConnectionContext()
@@ -38,7 +37,7 @@ const LoginForm = () => {
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
       await loginSchema.validate(values, { abortEarly: false })
-      await axios.post(`${window.location.origin}/api/auth/login`, values)
+      await axios.post(`/api/auth/login`, values)
       setConnected(true)
       setPopup(true)
       setSuccess(true)

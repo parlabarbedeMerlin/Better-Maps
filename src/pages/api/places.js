@@ -1,7 +1,15 @@
-import addPlaceController from "@/utils/controllers/addPlaceController"
 import { createRoute } from "@/utils/database/createRoute"
+import PlaceModel from "@/utils/database/models/placeModel"
+import addPlaceController from "../../utils/controllers/addPlaceController"
 
 const handler = createRoute(async (req, res) => {
+  if (req.method === "GET") {
+    const { skip, limit } = req.query
+    const places = await PlaceModel.find({}).skip(skip || 0).limit(limit || 0)
+    const count = await PlaceModel.countDocuments({})
+    res.status(200).json({ places, count })
+  }
+
   if (req.method === "POST") {
     await addPlaceController(req, res)
   }
