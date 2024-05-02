@@ -11,7 +11,7 @@ const Verify = () => {
   const { token } = router.query
   const handleVerify = async () => {
     try {
-      await axios.post(`${window.location.origin}/api/auth/verifyMail`, { token })
+      await axios.post(`/api/auth/verifyMail`, { token })
       router.push("/auth/login")
     }
     catch (error) {

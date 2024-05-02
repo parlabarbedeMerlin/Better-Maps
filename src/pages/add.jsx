@@ -1,3 +1,4 @@
+import PopUp from "@/components/PopUp"
 import BarForm from "@/components/forms/BarForm"
 import MuseumForm from "@/components/forms/MuseumForm"
 import ParkForm from "@/components/forms/ParkForm"
@@ -11,18 +12,44 @@ import axios from "axios"
 import clsx from "clsx"
 import { Form, Formik } from "formik"
 import { Dosis } from "next/font/google"
+import { useRouter } from "next/router"
 import { useState } from "react"
 
 // eslint-disable-next-line new-cap
 const dosis = Dosis({ subsets: ["latin"] })
+// eslint-disable-next-line max-lines-per-function
 const Add = () => {
   const [formType, setFormType] = useState(AddInitialValues.type)
-  const handleSubmit = (values) => {
-    axios.post(`${window.location.origin}/api/places`, values)
+  const [popup, setPopup] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [message, setMessage] = useState("")
+  const [id, setId] = useState(null)
+  const router = useRouter()
+  const handleSubmit = async (values) => {
+    try {
+      const req = await axios.post(`/api/places`, values)
+      setPopup(true)
+      setSuccess(true)
+      setMessage(req.data.message)
+      // eslint-disable-next-line no-underscore-dangle
+      setId(req.data.addedPlace._id)
+    } catch (error) {
+      setPopup(true)
+      setSuccess(false)
+      setMessage(`\n${error.response.data.message}`)
+    }
+  }
+  const handleClosePopup = () => {
+    setPopup(false)
+
+    if (id) {
+      router.push(`/places/${id}`)
+    }
   }
 
   return (
     <main className={clsx("flex-1 bg-[#E5FFE5] flex justify-center items-center", dosis.className)}>
+      <PopUp open={popup} onClose={handleClosePopup} clickBtn={handleClosePopup} message={message} success={success} btnText={"Close"} />
       <Formik validationSchema={placeSchema} initialValues={AddInitialValues} onSubmit={handleSubmit} >
         {({ errors, touched, handleChange, handleBlur }) => (<Form noValidate className="bg-white px-10 py-9 my-9 w-2/3 rounded-[35px] drop-shadow-2xl" >
           <div className="flex flex-col gap-4 items-center w-full md-20 sm:my-0  md:w-full sm:w-11/12">
@@ -33,7 +60,7 @@ const Add = () => {
                 <span className="text-red-500">{errors.placeName && touched.placeName && (<>{errors.placeName}</>)}</span>
               </div>
               <div className="w-full md:w-2/5">
-                <SelectField name="type" label="Type" error={errors.type} touched={touched.type} current={formType} setCurrent={setFormType} items={Types} onChange={handleChange} onBlur={handleBlur} />
+                <SelectField name="type" label="Type" error={errors.type} touched={touched.type} setCurrent={setFormType} items={Types} onChange={handleChange} onBlur={handleBlur} />
                 <span className="text-red-500">{errors.type && touched.type && (<>{errors.type}</>)}</span>
               </div>
             </div>

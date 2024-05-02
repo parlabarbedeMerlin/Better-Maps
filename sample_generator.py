@@ -111,7 +111,8 @@ def generate_address():
         "zipCode": zip_code,
         "type": type,
         "price": random.choice(PRICES),
-        "starRating": random.choice(STARS)
+        "starRating": random.choice(STARS),
+        "author": "renard.tristan@proton.me"
     }
     if type == "🍔 Restaurant":
         address["foodType"] = random.choice(FOOD_TYPES)
@@ -125,7 +126,7 @@ def generate_address():
         address["barType"] = random.choice(BAR_TYPES)
     return address
 
-addresses = [generate_address() for _ in range(10000)]
+addresses = [generate_address() for _ in range(100000)]
 
 with open("generated_addresses.json", "w") as file:
     for address in addresses:
