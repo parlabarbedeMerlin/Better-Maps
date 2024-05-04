@@ -11,7 +11,7 @@ const dosis = Dosis({ subsets: ["latin"] })
 export const getServerSideProps = ({ params: { placeId } }) => ({
   props: { placeId, }
 })
-const Place = ({ pageProps: { placeId } }) => {
+const Place = ({ placeId }) => {
   const router = useRouter()
   const { connected } = useConnectionContext()
   const [place, setPlace] = useState({})
