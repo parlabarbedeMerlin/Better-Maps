@@ -1,16 +1,17 @@
+import PopUp from "@/components/PopUp"
 import BarForm from "@/components/forms/BarForm"
 import MuseumForm from "@/components/forms/MuseumForm"
 import ParkForm from "@/components/forms/ParkForm"
 import RestaurantForm from "@/components/forms/RestaurantForm"
 import Button from "@/components/inputs/buttons/Button"
-import SelectField from "@/components/inputs/fields/SelectField"
 import TextFiled from "@/components/inputs/fields/TextField"
-import { ArtisticCurrents, BarTypes, FoodTypes, ParkTypes, Prices, Privacys, Stars, Types, TypesOfArt } from "@/utils/config"
+import { ArtisticCurrents, BarTypes, FoodTypes, ParkTypes, Prices, Privacys, Stars, TypesOfArt } from "@/utils/config"
 import placeSchema from "@/utils/schema/placeSchema"
 import axios from "axios"
 import clsx from "clsx"
 import { Form, Formik } from "formik"
 import { Dosis } from "next/font/google"
+import { useRouter } from "next/router"
 import { useState } from "react"
 
 // eslint-disable-next-line new-cap
@@ -24,16 +25,39 @@ export const getServerSideProps = async ({ params: { placeId } }) => {
     }
   }
 }
+// eslint-disable-next-line max-lines-per-function
 const Edit = ({ place }) => {
   const initialValues = place
   const [formType, setFormType] = useState(place.type)
-  const handleSubmit = (values) => {
-    // eslint-disable-next-line no-underscore-dangle
-    axios.patch(`/api/places/${place._id}`, values)
+  const [id, setId] = useState(place._id)
+  const [popup, setPopup] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [message, setMessage] = useState("")
+  const router = useRouter()
+  const handleSubmit = async (values) => {
+    try {
+      const req = await axios.patch(`/api/places/${place._id}`, values)
+      setPopup(true)
+      setSuccess(true)
+      setMessage(req.data.message)
+    } catch (error) {
+      setPopup(true)
+      setSuccess(false)
+      setMessage(`\n${error.message} \n Please verify the data and try again!`)
+      console.log(error)
+    }
+  }
+  const handleClosePopup = () => {
+    setPopup(false)
+
+    if (id && success) {
+      router.push(`/places/${id}`)
+    }
   }
 
   return (
     <main className={clsx("flex-1 bg-[#E5FFE5] flex justify-center items-center", dosis.className)}>
+      <PopUp open={popup} onClose={handleClosePopup} clickBtn={handleClosePopup} message={message} success={success} btnText={"Close"} />
       <Formik validationSchema={placeSchema} initialValues={initialValues} onSubmit={handleSubmit} >
         {({ errors, touched, handleChange, handleBlur }) => (
           <Form noValidate className="bg-white px-10 py-9 my-9 w-2/3 rounded-[35px] drop-shadow-2xl" >
@@ -43,10 +67,6 @@ const Edit = ({ place }) => {
                 <div className="w-full md:w-3/5">
                   <TextFiled id="placeName" name="placeName" placeholder="Place Name" error={errors.placeName} touched={touched.placeName} onChange={handleChange} onBlur={handleBlur} />
                   <span className="text-red-500">{errors.placeName && touched.placeName && (<>{errors.placeName}</>)}</span>
-                </div>
-                <div className="w-full md:w-2/5">
-                  <SelectField name="type" label="Type" error={errors.type} touched={touched.type} setCurrent={setFormType} items={Types} onChange={handleChange} onBlur={handleBlur} />
-                  <span className="text-red-500">{errors.type && touched.type && (<>{errors.type}</>)}</span>
                 </div>
               </div>
               <div className="w-full flex flex-col gap-8 md:flex-row">
@@ -75,7 +95,6 @@ const Edit = ({ place }) => {
                 {(formType === "🌳 Park") && (<ParkForm parkTypes={ParkTypes} privacys={Privacys} stars={Stars} prices={Prices} errors={errors} touched={touched} handleChange={handleChange} handleBlur={handleBlur} />)}
                 {(formType === "🍺 Bar") && (<BarForm barTypes={BarTypes} stars={Stars} prices={Prices} errors={errors} touched={touched} handleChange={handleChange} handleBlur={handleBlur} />)}
               </>
-              { }
               <Button type="submit" variant="primary" >Edit</Button>
             </div>
           </Form>)}
