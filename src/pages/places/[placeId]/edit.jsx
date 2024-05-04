@@ -28,14 +28,16 @@ export const getServerSideProps = async ({ params: { placeId } }) => {
 // eslint-disable-next-line max-lines-per-function
 const Edit = ({ place }) => {
   const initialValues = place
-  const [formType, setFormType] = useState(place.type)
-  const [id, setId] = useState(place._id)
+  const [formType] = useState(place.type)
+  // eslint-disable-next-line no-underscore-dangle
+  const [id] = useState(place._id)
   const [popup, setPopup] = useState(false)
   const [success, setSuccess] = useState(false)
   const [message, setMessage] = useState("")
   const router = useRouter()
   const handleSubmit = async (values) => {
     try {
+      // eslint-disable-next-line no-underscore-dangle
       const req = await axios.patch(`/api/places/${place._id}`, values)
       setPopup(true)
       setSuccess(true)
@@ -44,7 +46,6 @@ const Edit = ({ place }) => {
       setPopup(true)
       setSuccess(false)
       setMessage(`\n${error.message} \n Please verify the data and try again!`)
-      console.log(error)
     }
   }
   const handleClosePopup = () => {
