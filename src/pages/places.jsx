@@ -3,6 +3,7 @@ import { ArtisticCurrents, BarTypes, FoodTypes, ParkTypes, Prices, Privacys, Sta
 import axios from "axios"
 import clsx from "clsx"
 import { Dosis } from "next/font/google"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import Button from "../components/inputs/buttons/Button"
@@ -128,7 +129,7 @@ const Places = () => {
           // eslint-disable-next-line no-underscore-dangle
           <li key={place._id} className="group w-full">
             {/* eslint-disable-next-line no-underscore-dangle */}
-            <a href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all">
+            <Link href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all">
               <span className="text-xl font-extrabold">
                 {place.placeName}
               </span>
@@ -140,7 +141,7 @@ const Places = () => {
                 <span>Stars: <span className="font-bold">{place.starRating}</span></span>
                 <span>Price: <span className="font-bold">{place.price}</span></span>
               </div>
-            </a>
+            </Link>
           </li>
         ))
         }

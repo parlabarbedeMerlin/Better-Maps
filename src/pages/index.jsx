@@ -2,6 +2,7 @@ import Button from "@/components/inputs/buttons/Button"
 import axios from "axios"
 import clsx from "clsx"
 import { Dosis } from "next/font/google"
+import Link from "next/link"
 
 export const getServerSideProps = async () => {
   const { data: places } = await axios.get(`${process.env.HOST_NAME}/api/places?limit=6&skip=0&filters={}`)
@@ -17,13 +18,13 @@ const Home = ({ places }) => (
     <div className="bg-gradient-to-b from-emerald-500 to to-green-500 h-[70vh] w-full flex justify-center items-center">
       <h1 className="group w-full text-8xl font-bold text-center text-white hover:font-normal transition-all duration-700">Discover new places<span className="italic font-normal text-4xl group-hover:font-extrabold transition-all duration-700"> to be !</span></h1>
     </div>
-    <div className=" bg-gradient-to-b from-green-500 to-emerald-300 w-full pb-5 flex justify-center items-center">
+    <div className=" bg-gradient-to-b from-green-500 to-emerald-300 w-full pb-32 flex justify-center items-center">
       <ul className="w-4/5 bg-white flex flex-col p-6 rounded-3xl gap-2 items-center">
         {places.map((place) => (
           // eslint-disable-next-line no-underscore-dangle
           <li key={place._id} className="group w-full">
             {/* eslint-disable-next-line no-underscore-dangle */}
-            <a href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all duration-300">
+            <Link href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all duration-300">
               <span className="text-xl font-extrabold">
                 {place.placeName}
               </span>
@@ -35,7 +36,7 @@ const Home = ({ places }) => (
                 <span>Stars: <span className="font-bold">{place.starRating}</span></span>
                 <span>Price: <span className="font-bold">{place.price}</span></span>
               </div>
-            </a>
+            </Link>
           </li>
         ))
         }
@@ -46,20 +47,14 @@ const Home = ({ places }) => (
         </li>
       </ul>
     </div>
-    {/* <div className="bg-gradient-to-b from-emerald-300 via-green-400 to-emerald-500 w-full py-12 pt-20 flex flex-col items-center">
-        <h2 className="group w-full text-5xl font-bold text-center text-white hover:font-normal transition-all duration-700">Find the perfect place <span className="italic font-normal text-3xl group-hover:font-extrabold transition-all duration-700"> to be !</span></h2>
-        <div className="w-4/5 bg-white p-4 gap-2 rounded-2xl mt-12 flex flex-wrap justify-between">
-          {Types.map((type) => (
-            <div key={type} className="w-full h-1/2 flex min-h-20 drop-shadow-md bg-red-600">
-              <p>
-                {type}
-              </p>
-            </div>
-          ))
-          }
-        </div>
-      </div> */}
-
+    <div className="bg-gradient-to-b from-emerald-300 via-green-400 to-emerald-500 w-full py-12 pt-20 flex flex-col items-center">
+      <h2 className="group w-full text-5xl font-bold text-center text-white hover:font-normal transition-all duration-700">The concept</h2>
+      <div className="w-1/3 bg-white p-10 gap-2 rounded-2xl mt-12 text-xl flex flex-wrap justify-between leading-relaxed tracking-wide">
+        <p>
+          Welcome to <span className="font-bold text-green-500">BetterMaps</span>! Here, within our expansive platform, you'll discover a multitude of new destinations awaiting your exploration. Whether you're seeking vibrant eateries, cozy cafes, exhilarating entertainment spots, tranquil retreats, or even productive workspaces, BetterMaps is your ultimate guide. But it doesn't end there - we encourage you to contribute your own favorite spots, enriching our community with hidden gems and beloved locales, all waiting to be shared with the world.
+        </p>
+      </div>
+    </div>
   </main>
 )
 
