@@ -5,8 +5,9 @@ import addPlaceController from "../../utils/controllers/addPlaceController"
 const handler = createRoute(async (req, res) => {
   if (req.method === "GET") {
     const { skip, limit } = req.query
-    const places = await PlaceModel.find({}).skip(skip || 0).limit(limit || 0)
-    const count = await PlaceModel.countDocuments({})
+    const filters = JSON.parse(req.query.filters)
+    const places = await PlaceModel.find({ ...filters }).skip(skip || 0).limit(limit || 0)
+    const count = await PlaceModel.countDocuments({ ...filters })
     res.status(200).json({ places, count })
   }
 

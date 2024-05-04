@@ -24,7 +24,7 @@ export const getServerSideProps = async ({ params: { placeId } }) => {
     }
   }
 }
-const Edit = ({ pageProps: place }) => {
+const Edit = ({ place }) => {
   const initialValues = place
   const [formType, setFormType] = useState(place.type)
   const handleSubmit = (values) => {
