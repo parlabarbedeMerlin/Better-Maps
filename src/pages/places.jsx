@@ -30,7 +30,6 @@ const Places = () => {
     setSkip((prev) => prev - limit)
   }
   const setFilter = (e) => {
-    console.log(e.target.name)
     setSkip(0)
 
     if (e.target.name === "type") {
