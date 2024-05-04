@@ -16,7 +16,7 @@ const RestaurantForm = ({ foodTypes, stars, prices, errors, touched, handleChang
           <span className="text-red-500">{errors.foodType && touched.foodType && (<>{errors.foodType}</>)}</span>
         </div>
         <div className="w-full md:w-1/3">
-          <SelectField name="starRating" label="Michelin" items={stars} current={starRating} setCurrent={setStarRating} error={errors.starRating} touched={touched.starRating} onChange={handleChange} onBlur={handleBlur} {...props} />
+          <SelectField name="starRating" label="Stars" items={stars} current={starRating} setCurrent={setStarRating} error={errors.starRating} touched={touched.starRating} onChange={handleChange} onBlur={handleBlur} {...props} />
           <span className="text-red-500">{errors.starRating && touched.starRating && (<>{errors.starRating}</>)}</span>
         </div>
         <div className="w-full md:w-1/3">

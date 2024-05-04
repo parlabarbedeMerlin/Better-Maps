@@ -23,17 +23,17 @@ const handler = createRoute(async (req, res) => {
 
   if (req.method === "PATCH") {
     if (!req || !req.cookies || !req.cookies.token) {
-      return res.status(401).json({ message: "Unauthorized !" })
+      res.status(401).json({ message: "Unauthorized !" })
     }
 
     const { email } = await verifyTokenValidity(req.cookies.token)
 
     if (!email) {
-      return res.status(401).json({ message: "Unauthorized !" })
+      res.status(401).json({ message: "Unauthorized !" })
     }
 
     if (!place) {
-      return res.status(404).json({ message: "Place not found !" })
+      res.status(404).json({ message: "Place not found !" })
     }
 
 
