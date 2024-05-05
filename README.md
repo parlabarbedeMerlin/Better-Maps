@@ -1,40 +1,152 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+<h1> BetterMaps </h1>
 
+<p>A new way to see the world !</p>
+
+![index Page](./github/index.png)
+</div>
+
+## 📌 Index
+- [📌 Index](#-index)
+- [📜 About](#-about)
+- [🚀 Technologies](#-technologies)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [📦 Installation](#-installation)
+- [📗 Documentation](#-documentation)
+
+## 📜 About
+Welcome to BetterMaps! Here, within our expansive platform, you'll discover a multitude of new destinations awaiting your exploration. Whether you're seeking vibrant eateries, cozy cafes, exhilarating entertainment spots, tranquil retreats, or even productive workspaces, BetterMaps is your ultimate guide. But it doesn't end there - we encourage you to contribute your own favorite spots, enriching our community with hidden gems and beloved locales, all waiting to be shared with the world.
+
+
+## 🚀 Technologies
+### Frontend
+- [React](https://reactjs.org/)
+- [headlessui](https://headlessui.dev/)
+- [heroicons](https://heroicons.com/)
+- [formik](https://formik.org/)
+- [js-cookie](https://github.com/js-cookie/js-cookie)
+- [clsx](https://github.com/lukeed/clsx)
+
+### Backend
+- [Next.js](https://nextjs.org/)
+- [mongodb](https://www.mongodb.com/)
+- [mongoose](https://mongoosejs.com/)
+- [json web token](https://jwt.io/)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [jose](https://www.npmjs.com/package/node-jose)
+- [sendgrid](https://sendgrid.com/)
+- [axios](https://axios-http.com/)
+- [react query](https://react-query.tanstack.com/)
+- [yup](https://www.npmjs.com/package/yup/)
+
+## 📦 Installation
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/parlabarbedeMerlin/Better-Maps.git
+cd Better-Maps
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Configure the environment variables
+```bash
+cp .env.example .env.local
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+DB_URL="mongodb://localhost:27017/BetterMaps"
+SENDGRID_API_KEY=""
+EMAIL=""
+HOST_NAME="http://localhost:3000/"
+JWT_SECRET=""
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Variable name    | required | Description                                                                                                                                           |
+| ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DB_URL           | true     | The URL of the MongoDB database.                                                                                                                      |
+| HOST_NAME        | true     | The running host of the application.                                                                                                                  |
+| JWT_SECRET       | true     | The secret key for the JWT token.                                                                                                                     |
+| SENDGRID_API_KEY | false    | The API key of the SendGrid service. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._ |
+| EMAIL            | false    | The email address of the sender. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._     |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+3. Install the dependencies
+```bash
+# using npm
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# using yarn
+yarn install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# using pnpm
+pnpm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Run the application
+```bash
+# using npm
+npm run dev
 
-## Deploy on Vercel
+# using yarn
+yarn dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# using pnpm
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
+
+
+## 📗 Documentation
+
+1. ### API Documentation (/api/)
+   1. #### Auth (/api/auth)
+      1. POST /api/auth/register
+```json
+{
+  "email": "",
+  "fistName": "",
+  "lastName": "",
+  "password": "",
+  "confirmPassword": ""
+}
+```
+
+> If all the fields are correct, the server will send an email to the user to verify the account.
+
+      2. POST /api/auth/login
+```json
+{
+  "email": "",
+  "password": ""
+}
+```
+
+> If the email and password are correct, the server will send a JWT token to the user and set a cookie with the token.
+
+      3. POST /api/auth/verify
+```json
+{
+  "verifyToken": ""
+}
+```
+
+> If the token is correct, the server will verify the account.
+
+
+  2. ### Places (/api/places)
+      1. GET /api/places
+| Query parameter | Description                                |
+| --------------- | ------------------------------------------ |
+| skip            | The number of places to skip.              |
+| limit           | The number of places to return.            |
+| filters         | The filters to apply to the places (json). |
+
+      2. POST /api/places
+> The body must contain the place object following the yup schema.
+
+      3. GET /api/places/:id
+> The id is the id of the place. And the server will return the place object.
+      4. PATCH /api/places/:id
+> The body must contain the place object following the yup schema.
+> The id is the id of the place. And the server will update the place object.
