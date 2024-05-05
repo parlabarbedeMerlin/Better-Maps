@@ -49,10 +49,6 @@ const addPlaceController = async (req, res) => {
     place.price = price
   }
 
-  console.log(parkType)
-  console.log(place)
-  console.log(req.body)
-
   try {
     await placeSchema.validate(place)
     const addedPlace = await PlaceModel.create(place)
