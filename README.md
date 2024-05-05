@@ -1,7 +1,7 @@
 
 <div align="center">
 
-<h1> BetterMaps </h1>
+# [BetterMaps](https://github.com/parlabarbedeMerlin/Better-Maps)
 
 <p>A new way to see the world !</p>
 
