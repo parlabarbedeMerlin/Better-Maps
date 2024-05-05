@@ -13,8 +13,8 @@ const register = (user) => async (req, res) => {
     await newUser.save()
     const email = {
       email: newUser.email,
-      subject: "Better Map - Mail verification",
-      templateId: "d-e930e62279954f2d90573f92e3ed7146",
+      subject: "BetterMaps - Mail verification",
+      templateId: process.env.MAIL_VERIFICATION_TEMPLATE_ID,
       data: emailData
     }
 

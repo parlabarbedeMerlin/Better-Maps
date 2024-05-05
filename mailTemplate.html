@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Better Maps Email</title>
+</head>
+
+<body style="font-family: sans-serif; padding: 0; margin: 0; box-sizing: border-box;">
+  <header style="width: 100vw; background-color: rgb(21, 29, 18); padding: 3px 30px;">
+    <h3 style="color: white; font-size: xx-large;">Better Maps</h3>
+  </header>
+  <main style="margin: 60px 0px;">
+    <h1 style="text-align: center;">👋 Welcome to Better maps ! 🎉</h1>
+    <p style="width: 80%; font-size: larger; font-weight: 300; text-align: justify; margin: 0 auto;">
+      You have successfully registered with BetterMaps and we thank you for doing so! However, we need to confirm that
+      this email belongs to you. To check this if it is really you who registered, click on the button below or copy the
+      link into a browser! If not, click on the red button at the bottom of the email.
+    </p>
+    <div style="margin: 0 auto; text-align: center;">
+      <a href="{{{verification_link}}}"
+        style="color: white; text-decoration: none; background-color: rgb(89, 209, 16); padding: 20px 30px; border-radius: 5px; margin: 20px 0px; font-size: large; font-weight: 600; display: inline-block;">
+        Verify my email ✅
+      </a>
+    </div>
+    <code
+      style="background-color: #ececec; padding: 15px; border-radius: 5px; max-width: 80%; overflow-x: scroll; display: block; margin: 20px auto; text-align:center">
+        {{{verification_link}}}
+      </code>
+    <p
+      style="width: 80%; font-size: larger; font-weight: 600; text-align: center; margin-top: 75px; margin: 20px auto;">
+      If you have never registered, click on the link below.
+    </p>
+    <div style="margin: 0 auto; text-align: center;">
+      <a href="{{{deletation_link}}}"
+        style="color: white; text-decoration: none; background-color: rgb(255, 116, 116); padding: 20px 30px; border-radius: 5px; margin: 20px 0px; font-size: large; font-weight: 600; display: inline-block;">
+        Delete this email 🚫
+      </a>
+    </div>
+    <code
+      style="background-color: #ececec; padding: 15px; border-radius: 5px; max-width: 80%; overflow-x: scroll; display: block; margin: 20px auto; text-align:center">
+        {{{deletation_link}}}
+      </code>
+  </main>
+  <div data-role="module-unsubscribe" class="module" role="module" data-type="unsubscribe"
+    style="color: #444444; background-color: #ececec; font-size: 12px; line-height: 20px; padding: 16px 16px 16px 16px; text-align: center; display: block; margin: 0 auto;">
+
+    <p style="font-size: 12px; line-height: 20px; margin: 0;">
+      See you soon!
+    </p>
+  </div>
+</body>
+
+</html>
