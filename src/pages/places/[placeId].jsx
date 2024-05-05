@@ -29,16 +29,34 @@ const Place = ({ placeId }) => {
   }, [placeId, owner])
 
   return (
-    <main className={clsx("flex flex-1 flex-col items-center bg-green-200", dosis.className)}>
+    <main className={clsx("flex flex-1 flex-col items-center bg-gradient-to-b from-green-500 to-emerald-300", dosis.className)}>
       <h1 className="text-5xl font-bold my-16">Place</h1>
-      <section className="w-5/6 h-5/6 text-lg bg-white p-6 rounded-2xl">
-        {place && Object.keys(place).map((key) => (
-          <p key={key}><span className="font-bold">{key}</span>: {place[key]}</p>
-        ))}
-      </section>
-      <div className="w-5/6 flex justify-center">
-        <p>{owner}</p>
-        {(connected && owner && <Button href={`${router.asPath}/edit`} className="my-4">Edit</Button>)}
+      <div className="w-full flex justify-center items-center">
+        <section className="w-2/5 h-5/6 text-lg bg-white p-6 rounded-2xl">
+          {!place || place.error && <p className="w-full text-center">Place not found</p>}
+          {place.placeName && <h2 className="text-3xl font-bold">{place.placeName}</h2>}
+          {place.address && (
+            <p className="flex">
+              Address : <span className="font-bold"> {place.address}</span>,
+              {place.city && <span> {place.city}</span>},
+              {place.zipCode && <span> {place.zipCode}</span>},
+              {place.country && <span> {place.country}</span>}
+            </p>)}
+          {place.type && <p>Type: <span className="font-bold">{place.type}</span></p>}
+          {place.starRating && <p>Stars: <span className="font-bold">{place.starRating}</span></p>}
+          {place.price && <p>Price: <span className="font-bold">{place.price}</span></p>}
+          {place.foodType && <p>Food Type: <span className="font-bold">{place.foodType}</span></p>}
+          {place.typeOfArt && <p>Type of Art: <span className="font-bold">{place.typeOfArt}</span></p>}
+          {place.artisticCurrent && <p>Artistic Current: <span className="font-bold">{place.artisticCurrent}</span></p>}
+          {place.privacy && <p>Privacy: <span className="font-bold">{place.privacy}</span></p>}
+          {place.parkType && <p>Park Type: <span className="font-bold">{place.parkType}</span></p>}
+          {place.barType && <p>Bar Type: <span className="font-bold">{place.barType}</span></p>}
+          {place.owner && <p>Owner: <span className="font-bold">{place.owner}</span></p>}
+          <div className="w-full flex justify-center">
+            {(connected && owner && <Button href={`${router.asPath}/edit`} className="my-4">Edit</Button>)}
+          </div>
+        </section>
+
       </div>
     </main>
   )
