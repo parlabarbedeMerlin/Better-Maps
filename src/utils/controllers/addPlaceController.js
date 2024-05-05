@@ -35,9 +35,9 @@ const addPlaceController = async (req, res) => {
     place.typeOfArt = typeOfArt
   }
 
-  if (type === "🏞 Park") {
-    place.privacy = privacy
+  if (type === "🌳 Park") {
     place.parkType = parkType
+    place.privacy = privacy
   }
 
   if (type === "🍺 Bar") {
