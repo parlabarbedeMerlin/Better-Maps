@@ -35,9 +35,9 @@ const addPlaceController = async (req, res) => {
     place.typeOfArt = typeOfArt
   }
 
-  if (type === "🏞 Park") {
-    place.privacy = privacy
+  if (type === "🌳 Park") {
     place.parkType = parkType
+    place.privacy = privacy
   }
 
   if (type === "🍺 Bar") {
@@ -48,6 +48,10 @@ const addPlaceController = async (req, res) => {
     place.starRating = starRating
     place.price = price
   }
+
+  console.log(parkType)
+  console.log(place)
+  console.log(req.body)
 
   try {
     await placeSchema.validate(place)
