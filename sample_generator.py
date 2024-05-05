@@ -1,6 +1,8 @@
 import json
 import random
 
+email="renard.tristan@proton.me"
+
 streets = ["Rue de la Liberté", "Avenue des Roses", "Boulevard Voltaire", "Rue de la Paix", "Avenue des Champs-Élysées", "Rue du Commerce", "Avenue Victor Hugo", "Boulevard Haussmann", "Rue Saint-Honoré"]
 cities = ["Paris", "New York", "London", "Tokyo", "Berlin", "Sydney", "Rome", "Moscow", "Dubai"]
 countries = ["France", "USA", "UK", "Japan", "Germany", "Australia", "Italy", "Russia", "UAE"]
@@ -112,7 +114,7 @@ def generate_address():
         "type": type,
         "price": random.choice(PRICES),
         "starRating": random.choice(STARS),
-        "author": "renard.tristan@proton.me"
+        "author": email
     }
     if type == "🍔 Restaurant":
         address["foodType"] = random.choice(FOOD_TYPES)

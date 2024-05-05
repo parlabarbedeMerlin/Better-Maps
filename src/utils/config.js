@@ -95,7 +95,7 @@ export const BarTypes = [
 ]
 export const AddInitialValues = {
   placeName: "",
-  type: Types[3],
+  type: Types[0],
   address: "",
   zipCode: "",
   city: "",

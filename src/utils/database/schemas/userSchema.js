@@ -12,7 +12,7 @@ const userSchema = new Schema({
   password: String,
   verified: {
     type: Boolean,
-    default: false
+    default: !process.env.SENDGRID_API_KEY
   },
   verifyToken: {
     type: String,

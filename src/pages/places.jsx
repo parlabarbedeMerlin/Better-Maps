@@ -46,23 +46,25 @@ const Places = () => {
         newFilters.price = filters.price
       }
 
+      if (e.target.value === "All") {
+        const newFilters2 = {}
+        Object.keys(filters).forEach((key) => {
+          if (key !== e.target.name) {
+            newFilters2[key] = filters[key]
+          }
+        })
+
+        setFilters(newFilters2)
+
+        return
+      }
+
+
       setFilters(newFilters)
 
       return
     }
 
-    if (e.target.value === "All") {
-      const newFilters = {}
-      Object.keys(filters).forEach((key) => {
-        if (key !== e.target.name) {
-          newFilters[key] = filters[key]
-        }
-      })
-
-      setFilters(newFilters)
-
-      return
-    }
 
     setFilters((prev) => ({
       ...prev,
