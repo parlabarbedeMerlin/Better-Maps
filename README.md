@@ -16,6 +16,8 @@
   - [Backend](#backend)
 - [📦 Installation](#-installation)
 - [📗 Documentation](#-documentation)
+    - [Auth (/api/auth)](#auth-apiauth)
+    - [Places (/api/places)](#places-apiplaces)
 
 ## 📜 About
 Welcome to BetterMaps! Here, within our expansive platform, you'll discover a multitude of new destinations awaiting your exploration. Whether you're seeking vibrant eateries, cozy cafes, exhilarating entertainment spots, tranquil retreats, or even productive workspaces, BetterMaps is your ultimate guide. But it doesn't end there - we encourage you to contribute your own favorite spots, enriching our community with hidden gems and beloved locales, all waiting to be shared with the world.
@@ -100,53 +102,57 @@ pnpm dev
 ## 📗 Documentation
 
 1. ### API Documentation (/api/)
-   1. #### Auth (/api/auth)
-      1. POST /api/auth/register
-```json
-{
-  "email": "",
-  "fistName": "",
-  "lastName": "",
-  "password": "",
-  "confirmPassword": ""
-}
-```
+#### Auth (/api/auth)
+POST /api/auth/register
 
-> If all the fields are correct, the server will send an email to the user to verify the account.
 
-      2. POST /api/auth/login
-```json
-{
-  "email": "",
-  "password": ""
-}
-```
+| key             | Description                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| email           | The email of the user.                                              |
+| firstName       | The first name of the user.                                         |
+| lastName        | The last name of the user.                                          |
+| password        | The password of the user.                                           |
+| confirmPassword | The confirmation of the password.(must be the same as the password) |
+
+If all the fields are correct, the server will send an email to the user to verify the account.
+
+---
+POST /api/auth/login
+| key      | Description               |
+| -------- | ------------------------- |
+| email    | The email of the user.    |
+| password | The password of the user. |
 
 > If the email and password are correct, the server will send a JWT token to the user and set a cookie with the token.
 
-      3. POST /api/auth/verify
-```json
-{
-  "verifyToken": ""
-}
-```
+---
+POST /api/auth/verify
+| key         | Description            |
+| ----------- | ---------------------- |
+| verifyToken | The token of the user. |
 
 > If the token is correct, the server will verify the account.
 
 
-  2. ### Places (/api/places)
-      1. GET /api/places
+#### Places (/api/places)
+GET /api/places
 | Query parameter | Description                                |
 | --------------- | ------------------------------------------ |
 | skip            | The number of places to skip.              |
 | limit           | The number of places to return.            |
 | filters         | The filters to apply to the places (json). |
 
-      2. POST /api/places
+
+---
+POST /api/places
 > The body must contain the place object following the yup schema.
 
-      3. GET /api/places/:id
+
+---
+GET /api/places/:id
 > The id is the id of the place. And the server will return the place object.
-      4. PATCH /api/places/:id
+
+---
+PATCH /api/places/:id
 > The body must contain the place object following the yup schema.
 > The id is the id of the place. And the server will update the place object.
