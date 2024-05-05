@@ -149,3 +149,21 @@ GET /api/places/:id
 PATCH /api/places/:id
 > The body must contain the place object following the yup schema.
 > The id is the id of the place. And the server will update the place object.
+
+2. ### Project Structure
+- src
+  - components -> All the components of the application.
+    - forms -> All the forms of the application.
+    - inputs -> All the inputs of the application.
+    - nav -> The navigation bar of the application.
+  - context -> All the context of the application.
+  - utils -> All the utilities of the application.
+    - auth -> All the utilities for the authentication.
+      - password -> All the utilities for the password.
+    - controllers -> All the controllers of the application.
+    - database -> All the database utilities of the application.
+      - models -> All the models of the application for the database.
+      - schemas -> All the schemas of the application for the database.
+    - mail -> All the utilities for the mail.
+    - schema -> All the schemas of the application (yup).
+    - pages -> All the pages of the application.
