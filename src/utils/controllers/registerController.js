@@ -12,7 +12,10 @@ const registerController = async (req, res) => {
     newUser.lastName = user.lastName
     newUser.email = user.email
     newUser.password = await hashPassword(user.password)
-    newUser.verifyToken = await generateVerificationToken(user.email)
+
+    if (process.env.SENDGRID_API_KEY) {
+      newUser.verifyToken = await generateVerificationToken(user.email)
+    }
   }
   catch (error) {
     res.status(400).json({ message: "Invalid user data", error: error.message })

@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }) => (
     <QueryClientProvider client={queryClient}>
       <ConnectionContextProvider>
         <NavBar />
-        <Component pageProps={pageProps} />
+        <Component {...pageProps} />
       </ConnectionContextProvider>
     </QueryClientProvider>
 

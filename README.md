@@ -1,40 +1,169 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+<h1> BetterMaps </h1>
 
+<p>A new way to see the world !</p>
+
+![index Page](./github/index.png)
+</div>
+
+## 📌 Index
+- [📌 Index](#-index)
+- [📜 About](#-about)
+- [🚀 Technologies](#-technologies)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [📦 Installation](#-installation)
+- [📗 Documentation](#-documentation)
+    - [Auth (/api/auth)](#auth-apiauth)
+    - [Places (/api/places)](#places-apiplaces)
+
+## 📜 About
+Welcome to BetterMaps! Here, within our expansive platform, you'll discover a multitude of new destinations awaiting your exploration. Whether you're seeking vibrant eateries, cozy cafes, exhilarating entertainment spots, tranquil retreats, or even productive workspaces, BetterMaps is your ultimate guide. But it doesn't end there - we encourage you to contribute your own favorite spots, enriching our community with hidden gems and beloved locales, all waiting to be shared with the world.
+
+
+## 🚀 Technologies
+### Frontend
+- [React](https://reactjs.org/)
+- [headlessui](https://headlessui.dev/)
+- [heroicons](https://heroicons.com/)
+- [formik](https://formik.org/)
+- [js-cookie](https://github.com/js-cookie/js-cookie)
+- [clsx](https://github.com/lukeed/clsx)
+
+### Backend
+- [Next.js](https://nextjs.org/)
+- [mongodb](https://www.mongodb.com/)
+- [mongoose](https://mongoosejs.com/)
+- [json web token](https://jwt.io/)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [jose](https://www.npmjs.com/package/node-jose)
+- [sendgrid](https://sendgrid.com/)
+- [axios](https://axios-http.com/)
+- [react query](https://react-query.tanstack.com/)
+- [yup](https://www.npmjs.com/package/yup/)
+
+## 📦 Installation
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/parlabarbedeMerlin/Better-Maps.git
+cd Better-Maps
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Configure the environment variables
+```bash
+cp .env.example .env.local
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+| Variable name    | required | Description                                                                                                                                           |
+| ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DB_URL           | true     | The URL of the MongoDB database.                                                                                                                      |
+| HOST_NAME        | true     | The running host of the application.                                                                                                                  |
+| JWT_SECRET       | true     | The secret key for the JWT token.                                                                                                                     |
+| SENDGRID_API_KEY | false    | The API key of the SendGrid service. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._ |
+| EMAIL            | false    | The email address of the sender. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._     |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Install the dependencies
+```bash
+# using npm
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# using yarn
+yarn install
 
-## Learn More
+# using pnpm
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the application
+```bash
+# using npm
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# using yarn
+yarn dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# using pnpm
+pnpm dev
+```
 
-## Deploy on Vercel
+5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📗 Documentation
+
+1. ### API Documentation (/api/)
+#### Auth (/api/auth)
+POST /api/auth/register
+
+
+| key             | Description                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| email           | The email of the user.                                              |
+| firstName       | The first name of the user.                                         |
+| lastName        | The last name of the user.                                          |
+| password        | The password of the user.                                           |
+| confirmPassword | The confirmation of the password.(must be the same as the password) |
+
+If all the fields are correct, the server will send an email to the user to verify the account.
+
+---
+POST /api/auth/login
+| key      | Description               |
+| -------- | ------------------------- |
+| email    | The email of the user.    |
+| password | The password of the user. |
+
+> If the email and password are correct, the server will send a JWT token to the user and set a cookie with the token.
+
+---
+POST /api/auth/verify
+| key         | Description            |
+| ----------- | ---------------------- |
+| verifyToken | The token of the user. |
+
+> If the token is correct, the server will verify the account.
+
+
+#### Places (/api/places)
+GET /api/places
+| Query parameter | Description                                |
+| --------------- | ------------------------------------------ |
+| skip            | The number of places to skip.              |
+| limit           | The number of places to return.            |
+| filters         | The filters to apply to the places (json). |
+
+
+---
+POST /api/places
+> The body must contain the place object following the yup schema.
+
+
+---
+GET /api/places/:id
+> The id is the id of the place. And the server will return the place object.
+
+---
+PATCH /api/places/:id
+> The body must contain the place object following the yup schema.
+> The id is the id of the place. And the server will update the place object.
+
+2. ### Project Structure
+- src
+  - components -> All the components of the application.
+    - forms -> All the forms of the application.
+    - inputs -> All the inputs of the application.
+    - nav -> The navigation bar of the application.
+  - context -> All the context of the application.
+  - utils -> All the utilities of the application.
+    - auth -> All the utilities for the authentication.
+      - password -> All the utilities for the password.
+    - controllers -> All the controllers of the application.
+    - database -> All the database utilities of the application.
+      - models -> All the models of the application for the database.
+      - schemas -> All the schemas of the application for the database.
+    - mail -> All the utilities for the mail.
+    - schema -> All the schemas of the application (yup).
+    - pages -> All the pages of the application.

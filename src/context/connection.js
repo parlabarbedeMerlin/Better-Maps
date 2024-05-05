@@ -1,6 +1,6 @@
 import Cookies from "js-cookie"
+import { createContext, useContext, useEffect, useState } from "react"
 
-const { createContext, useState, useContext, useEffect } = require("react")
 const ConnectionContext = createContext({})
 
 export const ConnectionContextProvider = ({ children }) => {

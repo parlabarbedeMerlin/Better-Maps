@@ -17,16 +17,19 @@ const register = (user) => async (req, res) => {
       templateId: "d-e930e62279954f2d90573f92e3ed7146",
       data: emailData
     }
-    await sendEmail(email)
 
-    return res.status(201).json({ message: "User created successfully", user: newUser })
+    try {
+      await sendEmail(email)
+    } finally {
+      res.status(201).json({ message: "User created successfully! Please check your mails to verify your account" })
+    }
   }
   catch (error) {
     if (error.code === 11000) {
-      return res.status(409).json({ message: "Email already exists" })
+      res.status(409).json({ message: "Email already exists! Verfiy your account or use another email" })
     }
 
-    return res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 export default register
