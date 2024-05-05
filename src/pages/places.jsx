@@ -99,7 +99,7 @@ const Places = () => {
       {error && <p>Error: {error.message}</p>}
       <div className="w-4/5 bg-white flex flex-col p-6 rounded-3xl my-10">
         <h2 className="font-bold text-xl">Filters</h2>
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
           <FilterSelect name="type" label="Type" options={Types} setFilter={setFilter} />
           <FilterSelect name="starRating" label="Stars" options={Stars} setFilter={setFilter} />
           <FilterSelect name="price" label="Price" options={Prices} setFilter={setFilter} />
@@ -119,10 +119,10 @@ const Places = () => {
           {(type === "🍺 Bar") && (<FilterSelect name="barType" label="Bar Type" options={BarTypes} setFilter={setFilter} />)}
         </div>
         <div className="flex mt-5 items-center justify-between">
-          <h3 className="text-xl font-bold">
+          <h3 className="text-sm sm:text-lg font-bold">
             {count} - places found
           </h3>
-          <Button type="button" onClick={clearFilters} variant="caution">Clear Filters</Button>
+          <Button type="button" onClick={clearFilters} variant="caution" className="text-sm sm:text-lg">Clear Filters</Button>
         </div>
       </div>
       <ul className="w-4/5 bg-white flex flex-col p-6 rounded-3xl gap-2 items-center">
@@ -131,28 +131,28 @@ const Places = () => {
           // eslint-disable-next-line no-underscore-dangle
           <li key={place._id} className="group w-full">
             {/* eslint-disable-next-line no-underscore-dangle */}
-            <Link href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all">
-              <span className="text-xl font-extrabold">
+            <Link href={`/places/${place._id}`} className="p-4 flex flex-col bg-white drop-shadow-md border border-gray-200 rounded-2xl gap-2 hover:bg-emerald-100 transition-all duration-300">
+              <span className="md:text-xl font-extrabold">
                 {place.placeName}
               </span>
-              <span className="text-xl">
-                {place.address}, {place.city}, {place.zipCode}, {place.country}
+              <span className="md:text-xl">
+                {place.address}, {place.city},<br className="md:hidden" /> {place.zipCode}, {place.country}
               </span>
-              <div className="flex justify-between">
-                <span>Type: <span className="font-bold">{place.type}</span></span>
-                <span>Stars: <span className="font-bold">{place.starRating}</span></span>
-                <span>Price: <span className="font-bold">{place.price}</span></span>
+              <div className="flex justify-between flex-wrap">
+                <span>Type: <span className="font-bold text-sm md:text-base">{place.type}</span></span>
+                <span>Stars: <span className="font-bold text-sm md:text-base">{place.starRating}</span></span>
+                <span>Price: <span className="font-bold text-sm md:text-base">{place.price}</span></span>
               </div>
             </Link>
           </li>
         ))
         }
         <li className="w-full flex justify-between items-center mt-4">
-          <Button type="button" onClick={prevPage} disabled={skip === 0} className="disabled:bg-slate-200 disabled:hover:bg-slate-800 disabled:cursor-not-allowed">Previous</Button>
-          <span>
+          <Button type="button" onClick={prevPage} disabled={skip === 0} className="text-sm sm:text-xl disabled:bg-slate-200 disabled:hover:bg-slate-800 disabled:cursor-not-allowed">Previous</Button>
+          <span className="text-sm sm:text-base">
             Page {skip / limit + 1} of {Math.ceil(count / limit)}
           </span>
-          <Button type="button" onClick={nextPage} disabled={skip + limit >= count} className="disabled:bg-slate-200 disabled:hover:bg-slate-800 disabled:cursor-not-allowed">Next</Button>
+          <Button type="button" onClick={nextPage} disabled={skip + limit >= count} className="text-sm sm:text-xl disabled:bg-slate-200 disabled:hover:bg-slate-800 disabled:cursor-not-allowed">Next</Button>
         </li>
       </ul>
     </div>
