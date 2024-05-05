@@ -56,16 +56,17 @@ cd Better-Maps
 cp .env.example .env.local
 ```
 
-| Variable name    | required | Description                                                                                                                                           |
-| ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DB_URL           | true     | The URL of the MongoDB database.                                                                                                                      |
-| HOST_NAME        | true     | The running host of the application.                                                                                                                  |
-| JWT_SECRET       | true     | The secret key for the JWT token.                                                                                                                     |
-| SENDGRID_API_KEY | false    | The API key of the SendGrid service. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._ |
-| EMAIL            | false    | The email address of the sender. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._     |
+| Variable name                 | required | Description                                                                                                                                                 |
+| ----------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DB_URL                        | true     | The URL of the MongoDB database.                                                                                                                            |
+| HOST_NAME                     | true     | The running host of the application.                                                                                                                        |
+| JWT_SECRET                    | true     | The secret key for the JWT token.                                                                                                                           |
+| SENDGRID_API_KEY              | false    | The API key of the SendGrid service. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._       |
+| EMAIL                         | false    | The email address of the sender. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._           |
+| MAIL_VERIFICATION_TEMPLATE_ID | false    | The template id of the email verification. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._ |
 
 
-1. Install the dependencies
+3. Install the dependencies
 ```bash
 # using npm
 npm install
@@ -90,6 +91,14 @@ pnpm dev
 ```
 
 5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
+
+6. If you use sendgrid, you need to create a dynamic template usign ./mailTemplate.html and set the id in the environment variable MAIL_VERIFICATION_TEMPLATE_ID.
+
+7. You can generate random places using the following command:
+```bash
+python3 sample_generator.py
+```
+And you can import the generated places using the file "generated_addresses.json" in the root of the project. (Go on the database set in the environment variable DB_URL and go in collection places and import the file.)
 
 
 ## 📗 Documentation

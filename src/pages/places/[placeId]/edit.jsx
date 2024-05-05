@@ -57,7 +57,7 @@ const Edit = ({ place }) => {
   }
 
   return (
-    <main className={clsx("flex-1 bg-[#E5FFE5] flex justify-center items-center", dosis.className)}>
+    <main className={clsx("flex-1 bg-gradient-to-b from-green-500 to-emerald-300 flex justify-center items-center", dosis.className)}>
       <PopUp open={popup} onClose={handleClosePopup} clickBtn={handleClosePopup} message={message} success={success} btnText={"Close"} />
       <Formik validationSchema={placeSchema} initialValues={initialValues} onSubmit={handleSubmit} >
         {({ errors, touched, handleChange, handleBlur }) => (

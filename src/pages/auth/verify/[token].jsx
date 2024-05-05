@@ -25,7 +25,7 @@ const Verify = () => {
 
   return (
     <>
-      <div className="flex-1 bg-[#E5FFE5] flex justify-center items-center">
+      <div className="flex-1 bg-gradient-to-b from-green-500 to-emerald-300 flex justify-center items-center">
         <PopUp open={popup} onClose={handleClosePopup} message={message} success={false} clickBtn={handleClosePopup} btnText="Close" />
         <Button className="py-5" type={"button"} onClick={handleVerify}>
           Verify
