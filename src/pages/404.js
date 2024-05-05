@@ -5,7 +5,7 @@ import { Dosis } from "next/font/google"
 // eslint-disable-next-line new-cap
 const dosis = Dosis({ subsets: ["latin"] })
 const Custom404 = () => (
-  <main className={`flex-1 bg-[#E5FFE5] select-none flex flex-col justify-center items-center ${dosis.className}`}>
+  <main className={`flex-1 bg-gradient-to-b from-green-500 to-emerald-300 select-none flex flex-col justify-center items-center ${dosis.className}`}>
     <span
       className={"text-[350px] italic font-extrabold text-gray-800 mb-4"}
     >

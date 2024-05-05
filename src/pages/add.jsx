@@ -48,7 +48,7 @@ const Add = () => {
   }
 
   return (
-    <main className={clsx("flex-1 bg-[#E5FFE5] flex justify-center items-center", dosis.className)}>
+    <main className={clsx("flex-1 bg-gradient-to-b from-green-500 to-emerald-300 flex justify-center items-center", dosis.className)}>
       <PopUp open={popup} onClose={handleClosePopup} clickBtn={handleClosePopup} message={message} success={success} btnText={"Close"} />
       <Formik validationSchema={placeSchema} initialValues={AddInitialValues} onSubmit={handleSubmit} >
         {({ errors, touched, handleChange, handleBlur }) => (<Form noValidate className="bg-white px-10 py-9 my-9 w-2/3 rounded-[35px] drop-shadow-2xl" >
