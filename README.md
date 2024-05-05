@@ -56,13 +56,6 @@ cd Better-Maps
 cp .env.example .env.local
 ```
 
-DB_URL="mongodb://localhost:27017/BetterMaps"
-SENDGRID_API_KEY=""
-EMAIL=""
-HOST_NAME="http://localhost:3000/"
-JWT_SECRET=""
-
-
 | Variable name    | required | Description                                                                                                                                           |
 | ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DB_URL           | true     | The URL of the MongoDB database.                                                                                                                      |
@@ -72,7 +65,7 @@ JWT_SECRET=""
 | EMAIL            | false    | The email address of the sender. _if you don't provide a correct value for this variable BetterMaps will not use an email to verify the profile._     |
 
 
-3. Install the dependencies
+1. Install the dependencies
 ```bash
 # using npm
 npm install
